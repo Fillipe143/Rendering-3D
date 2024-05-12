@@ -14,7 +14,7 @@ void loop();
 
 int main() {
     SetTraceLogLevel(log_level);
-    InitWindow(screen_width, screen_height, "3D Raylib");
+    InitWindow(screen_width, screen_height, "Rotating Cube");
     SetTargetFPS(target_fps);
 
     setup();
