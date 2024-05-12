@@ -75,7 +75,7 @@ void draw_sphere(Vector3 position, float radius, Color color, int resolution = 1
             vertex = rotate_z(vertex, angle.z);
 
             vertex.x += position.x;
-            vertex.y += position.y - radius;
+            vertex.y += position.y;
             vertex.z += position.z;
 
             Vector2 n_vertex = projection(vertex);
@@ -87,7 +87,7 @@ void draw_sphere(Vector3 position, float radius, Color color, int resolution = 1
 void loop() {
     BeginDrawing();
     ClearBackground(BLACK);
-    draw_sphere({ screen_width / 2.0f, screen_width / 2.0f, 0 }, 100, WHITE, 30);
+    draw_sphere({ screen_width / 2.0f, screen_height / 2.0f, 0 }, 100, WHITE, 30);
     angle.y += 0.01;
     EndDrawing();
 }
