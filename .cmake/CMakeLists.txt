@@ -12,3 +12,7 @@ configure_file(
 project(RotatingCube)
 add_executable(cube "../src/cube.cpp")
 target_link_libraries(cube raylib)
+
+project(Sphere)
+add_executable(sphere "../src/sphere.cpp")
+target_link_libraries(sphere raylib)
