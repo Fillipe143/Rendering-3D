@@ -1,14 +1,13 @@
 .SILENT:
 
-CXX = g++
-CXXFLAGS = -std=c++20 -Wall -lraylib
+CMAKE_DIR = .cmake
+P = cube
 
-f=cube
-SRCS = src/$(f).cpp
-TARGET = bin/$(f)
+cmake:
+	cmake $(CMAKE_DIR)
 
 build:
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(SRCS)
+	make -sC $(CMAKE_DIR) $(P)/fast
 
 run: build
-	./$(TARGET)
+	./targets/$(P)
