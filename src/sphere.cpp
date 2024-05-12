@@ -56,8 +56,7 @@ Vector3 rotate_z(Vector3 vertex, float angle) {
         .z = vertex.z
     };
 }
-Vector3 angle;
-void draw_sphere(Vector3 position, float radius, Color color, int resolution = 100) {
+void draw_sphere(Vector3 position, float radius, Vector3 angle, Color color, int resolution = 100) {
     for (int i = 0; i < resolution; i++) {
 
         float lat = map(i, 0, resolution, 0, M_PI);
@@ -84,10 +83,25 @@ void draw_sphere(Vector3 position, float radius, Color color, int resolution = 1
     }
 }
 
+Vector3 angles[3];
+int hue = 0;
 void loop() {
     BeginDrawing();
     ClearBackground(BLACK);
-    draw_sphere({ screen_width / 2.0f, screen_height / 2.0f, 0 }, 100, WHITE, 30);
-    angle.y += 0.01;
+
+    draw_sphere({ screen_width / 2.0f, screen_height / 2.0f - 100, 0 }, 100, angles[0], ColorFromHSV(hue, 1, 1), 30);
+    draw_sphere({ screen_width / 2.0f - 110, screen_height / 2.0f + 100, 0 }, 100, angles[1], ColorFromHSV(360 - hue, 1, 1), 30);
+    draw_sphere({ screen_width / 2.0f + 110, screen_height / 2.0f + 100, 0 }, 100, angles[2], ColorFromHSV((hue + 180) % 360, 1, 1), 30);
+
+    angles[0].x = fmodf(angles[0].x + 0.01, 2 * M_PIf);
+
+    angles[1].x = fmodf(angles[1].x + 0.01, 2 * M_PIf);
+    angles[1].z = fmodf(angles[1].z + 0.01, 2 * M_PIf);
+
+    angles[2].x = fmodf(angles[2].x + 0.01, 2 * M_PIf);
+    angles[2].z = fmodf(angles[2].z + 0.01, 2 * M_PIf);
+    angles[2].y = fmodf(angles[2].y + 0.01, 2 * M_PIf);
+
+    hue = (hue + 1) % 360;
     EndDrawing();
 }
